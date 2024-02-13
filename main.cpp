@@ -21,14 +21,20 @@ public:
 
 int main()
 {
+    float rd;
     Circulo c1, c2;
-    c1.setRadio(6);
+    c1.setRadio(12);
     c1.x = 3;
     c1.y = 2;
-    c2.setRadio(9);
-    c2.x = 7;
-    c2.y = 4;
     Circulo c3(4, 5, 8);
+    cout << "introduzca la radio del circulo 3 " << endl;
+    cin >> rd;
+    c2.setRadio(rd);
+    cout << "introduzca la coordenada en x y luego en y " << endl;
+    cin >> c2.x >> c2.y;
+    c1.intersects(c2);
+    c1.intersects(c3);
+    c2.intersects(c3);
     cout << "funciono :D" << endl;
     return 0;
 }
@@ -83,14 +89,22 @@ float Circulo::getArea()
 }
 void Circulo::intersects(Circulo circulo)
 {
-    float dist;
-
-    if (dist <= radio + radio)
+    float dist, r2;
+    int cordx, cordy;
+    r2 = radio + circulo.getRadio();
+    cordx = x - circulo.x;
+    cordy = y - circulo.y;
+    dist = sqrt(cordx * cordx + cordy * cordy);
+    if (dist > r2)
     {
         cout << "los circulos intersectan" << endl;
     }
-    else
+    else if (dist < r2)
     {
         cout << "los circulos no intersectan" << endl;
+    }
+    else
+    {
+        cout << "la distancia y las radios son iguales" << endl;
     }
 }
